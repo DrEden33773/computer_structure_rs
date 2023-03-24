@@ -1,7 +1,7 @@
 #![allow(unused_imports)]
 
-use computer_structure_rs as this;
+use computer_structure_rs as cs_rs;
 
 fn main() {
-    println!("This is a lib...");
+    println!("Please use `unit tests` in each `module` instead...");
 }
