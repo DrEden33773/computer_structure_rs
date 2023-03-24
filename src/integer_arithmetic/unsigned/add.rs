@@ -1,3 +1,9 @@
+//! Notifications
+//!
+//! u8::MAX = 2^8-1 = 255
+//!
+//! u8::MIN = 0
+
 #![allow(dead_code)]
 
 use std::num::Wrapping as wp;
@@ -8,7 +14,7 @@ pub fn u8_add_ok(a: u8, b: u8) -> bool {
 }
 
 #[cfg(test)]
-mod u8_plus {
+mod u8_add {
     use super::*;
 
     #[test]

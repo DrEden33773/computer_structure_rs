@@ -1,3 +1,9 @@
+//! Notifications
+//!
+//! u8::MAX = 2^8-1 = 255
+//!
+//! u8::MIN = 0
+
 #![allow(dead_code)]
 
 use std::num::Wrapping as wp;
@@ -6,7 +12,9 @@ pub fn u8_sub(a: u8, b: u8) -> u8 {
     let a = wp(a);
     let b = wp(b);
     let u8_max = wp(u8::MAX);
-    let b_opposite = u8_max + wp(1) - b;
+    let b_opposite = u8_max + wp(1) - b; // looks familiar to Two's Complex
+    let b_opposite_bit_opt = !b + wp(1); // looks familiar to Two's Complex
+    assert_eq!(b_opposite, b_opposite_bit_opt);
     let res = a + b_opposite;
     res.0
 }
