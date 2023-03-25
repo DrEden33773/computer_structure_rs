@@ -8,9 +8,9 @@
 
 use std::num::Wrapping as wp;
 
-pub fn u8_add_ok(a: u8, b: u8) -> bool {
-    let sum = wp(a) + wp(b);
-    return sum >= wp(a);
+pub fn u8_add_ok(lhs: u8, rhs: u8) -> bool {
+    let sum = wp(lhs) + wp(rhs);
+    return sum >= wp(lhs);
 }
 
 #[cfg(test)]

@@ -8,20 +8,21 @@
 
 use std::num::Wrapping as wp;
 
-pub fn u8_sub(a: u8, b: u8) -> u8 {
-    let a = wp(a);
-    let b = wp(b);
+pub fn u8_sub(lhs: u8, rhs: u8) -> u8 {
+    let lhs = wp(lhs);
+    let rhs = wp(rhs);
     let u8_max = wp(u8::MAX);
-    let b_opposite = u8_max + wp(1) - b; // looks familiar to Two's Complex
-    let b_opposite_bit_opt = !b + wp(1); // looks familiar to Two's Complex
-    assert_eq!(b_opposite, b_opposite_bit_opt);
-    let res = a + b_opposite;
+    let rhs_opposite = u8_max + wp(1) - rhs; // looks familiar to Two's Complex
+    let rhs_opposite_bit_opt = !rhs + wp(1); // looks familiar to Two's Complex
+    assert_eq!(rhs_opposite, rhs_opposite_bit_opt);
+    let res = lhs + rhs_opposite;
     res.0
 }
 
 #[cfg(test)]
 mod u8_sub {
     use super::*;
+    use rand::Rng;
 
     #[test]
     fn test_u8_sub() {
@@ -31,8 +32,13 @@ mod u8_sub {
         let a_ = (wp(15u8) - wp(2u8)).0;
         let b_ = (wp(233u8) - wp(11u8)).0;
         let c_ = (wp(2u8) - wp(15u8)).0;
+        let random_lhs = rand::thread_rng().gen_range(u8::MIN..=u8::MAX);
+        let random_rhs = rand::thread_rng().gen_range(u8::MIN..=u8::MAX);
+        let d = u8_sub(random_lhs, random_rhs);
+        let d_ = (wp(random_lhs) - wp(random_rhs)).0;
         assert_eq!(a, a_);
         assert_eq!(b, b_);
         assert_eq!(c, c_);
+        assert_eq!(d, d_);
     }
 }

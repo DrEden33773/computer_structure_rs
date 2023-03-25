@@ -14,12 +14,12 @@ pub enum ErrType<T> {
     NegativeOverflow(T),
 }
 
-pub fn i8_add_ok(a: i8, b: i8) -> Result<i8, ErrType<i8>> {
-    let sum = (wp(a) + wp(b)).0;
-    if a > 0 && b > 0 && sum < 0 {
+pub fn i8_add_ok(lhs: i8, rhs: i8) -> Result<i8, ErrType<i8>> {
+    let sum = (wp(lhs) + wp(rhs)).0;
+    if lhs > 0 && rhs > 0 && sum < 0 {
         return Err(ErrType::PositiveOverflow(sum));
     }
-    if a < 0 && b < 0 && sum > 0 {
+    if lhs < 0 && rhs < 0 && sum > 0 {
         return Err(ErrType::NegativeOverflow(sum));
     }
     Ok(sum)
